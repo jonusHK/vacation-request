@@ -1,0 +1,60 @@
+local:
+  server:
+    port: 8080
+
+spring:
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate_ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        show-sql: true
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: false
+  security:
+    user:
+      name: user
+      password: user
+
+jwt:
+  header: Authorization
+  secret: cnV0eXdlb3JpdHV3eWVyb3RpdXdleXJ0b2l1d2V5cnRvd2VpdXJ0eXdvZWlnaGRmc29qa2doc2RmZ3Nkb2ZpZ3V3eWVydG91d3J1dHl3ZW9yaXR1d3llcm90aXV3ZXlydG9pdXdleXJ0b3dlaXVydHl3b2VpZ2hkZnNvamtnaHNkZmdzZG9maWd1d3llcnRvdXcK
+  token-validity-in-seconds: 86400
+
+working:
+  hour:
+    day: 8
+    half: 4
+    quarter: 2
+
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
